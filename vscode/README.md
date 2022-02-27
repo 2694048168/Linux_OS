@@ -33,6 +33,7 @@ from function_packages_dir import function_file_name
 
 ## vscode 插件推荐 (插件可以在本地安装，也可以只配置远程服务器的[用于远程开发])
 
+- Shades of Purple; VSCode 一款不错的全局颜色主题
 - Doxygen Documentation Generator; Doxygen 风格代码注意模板
 - Bracket Pair Colorizer; 彩色括号匹配，便于编辑和查阅源代码
 - C/C++ Microsoft; 智能提示和调试
