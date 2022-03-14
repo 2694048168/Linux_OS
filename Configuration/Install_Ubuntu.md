@@ -55,6 +55,7 @@ echo $SHELL
 sudo apt install zsh -y
 
 # 查看 shell 版本 切换默认使用 zsh
+# 需要重新 log out 才能生效
 zsh --version
 chsh -s $(which zsh)
 chsh -s $(which bash) root
@@ -292,6 +293,9 @@ sudo dpkg -i sunloginclient-11.0.0.36662-amd64.deb
 sudo apt update
 sudo apt upgrade
 sudo apt install build-essential -y
+
+# install homebrew to install missing packages in Linux or Mac
+# https://brew.sh/ 
 ```
 
 - cmake/git/python3
