@@ -29,10 +29,24 @@ from function_packages_dir import function_file_name
 
 # 路径复制, 正斜杠和反斜杠的错误快速更正
 # 使用 [Ctrl] + d 将选择添加到下一个查找匹配项，全部匹配后进行一次性更正
+
+# [Ctrl] + [ 快速进行向左缩进
+# [Ctrl] + ] 快速进行向右缩进
+
+# Ctrl + Shift + p 快速命令面板
+# reload 命令快速重启 vscode
+# minimap 命令快速开启/关闭 小地图功能
+# zoom 命令快速选择放大/缩小 窗口/字体 功能, 便于演示
+# interpreter 命令快速选择 python 解释器环境
+
+# Ctrl + p 快速检索文件名并打开
 ```
 
 ## vscode 插件推荐 (插件可以在本地安装，也可以只配置远程服务器的[用于远程开发])
 
+- Polacode-2020; vscode 输出代码图片, 即见即所得
+- vscode-icons; vscode的图标插件, 对文件以及目录显示图标
+- translate speaker 翻译朗读者API; 这是一个非常简单好用的翻译-朗读-替换字符串一体化插件，你只需要配置一个接口参数即可
 - autoDocstring; autoDocstring - Python Docstring Generator
 - advanced-new-file; Create files anywhere in your workspace from the keyboard(Ctrl+shift+p)
 - Shades of Purple; VSCode 一款不错的全局颜色主题
