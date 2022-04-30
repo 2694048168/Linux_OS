@@ -1,5 +1,7 @@
 # VSCode 使用技巧以及插件推荐
 
+> [Geek for VSCode](https://geek-docs.com/vscode/vscode-tutorials/what-is-vscode.html)
+
 ## vscode 快捷键 (减少使用鼠标，编写源代码的时候尽量使用键盘)
 
 - [Help] --> [Keyboard Shortcuts Reference]; 即可在浏览器中打开对应操作系统的快捷键文件
@@ -43,6 +45,10 @@ from function_packages_dir import function_file_name
 ```
 
 ## vscode 插件推荐 (插件可以在本地安装，也可以只配置远程服务器的[用于远程开发])
+
+- [VSCode Marketplace](https://marketplace.visualstudio.com/)
+- [VSCode Snippets](https://marketplace.visualstudio.com/search?target=VSCode&category=Snippets&sortBy=Relevance)
+- [VSCode Themes](https://marketplace.visualstudio.com/search?target=VSCode&category=Themes&sortBy=Relevance)
 
 - Polacode-2020; vscode 输出代码图片, 即见即所得
 - vscode-icons; vscode的图标插件, 对文件以及目录显示图标
