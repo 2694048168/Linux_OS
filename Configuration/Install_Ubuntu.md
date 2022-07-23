@@ -39,6 +39,13 @@ sudo apt clean   # 清理下载缓存的安装包
 # 利用 dpkg 管理 deb 格式
 sudo dpkg -i xxx.deb  # 安装 deb 格式的软件
 sudo dpkg -r xxx      # 卸载 deb 格式安装的软件
+
+# https://gitlab.com/volian/nala
+echo "deb http://deb.volian.org/volian/ scar main" | sudo tee /etc/apt/sources.list.d/volian-archive-scar-unstable.list
+wget -qO - https://deb.volian.org/volian/scar.key | sudo tee /etc/apt/trusted.gpg.d/volian-archive-scar-unstable.gpg > /dev/null
+
+sudo apt update && sudo apt install nala
+# 利用 nala 代替 apt, 显示更加简单明白
 ```
 
 # Terminal Shell
