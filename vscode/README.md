@@ -44,6 +44,17 @@ from function_packages_dir import function_file_name
 # Ctrl + p 快速检索文件名并打开
 ```
 
+## vscode 主题插件
+
+- Andromeda
+- Shades of Purple
+- Cobalt2 Theme Official
+- Dracula Official
+- Halcyon Theme
+- Night Owl
+- Tokyo Night
+
+
 ## vscode 插件推荐 (插件可以在本地安装，也可以只配置远程服务器的[用于远程开发])
 
 - [VSCode Marketplace](https://marketplace.visualstudio.com/)
