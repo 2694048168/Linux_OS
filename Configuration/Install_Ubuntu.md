@@ -44,6 +44,7 @@ sudo dpkg -r xxx      # 卸载 deb 格式安装的软件
 echo "deb http://deb.volian.org/volian/ scar main" | sudo tee /etc/apt/sources.list.d/volian-archive-scar-unstable.list
 wget -qO - https://deb.volian.org/volian/scar.key | sudo tee /etc/apt/trusted.gpg.d/volian-archive-scar-unstable.gpg > /dev/null
 
+# https://gitlab.com/volian/nala
 sudo apt update && sudo apt install nala
 # 利用 nala 代替 apt, 显示更加简单明白
 ```

@@ -1,67 +1,83 @@
-# tmux
+## tmux
+
+![tmux](https://github.com/tmux/tmux/raw/master/logo/tmux-logo-medium.png?raw=true)
+
+> 主要是分离会话和终端的功能, 还有就是分屏操作. 用户通过命令行的终端窗口,与计算机的这种临时的交互, 称为一次会话session; 会话时, 窗口与其中启动的进程是连在一起的, 即关闭窗口, 会话结束, 同时会话内的进程也会随之终止, 不管有没有运行完. 这对于在服务器上通过SSH登录并执行命令,突发意外(ssh断联, 网络中断, 想结束终端和关闭电脑), 导致SSH会话终止, 同时里面的进程也随之消失了. Tmux就是为了解决这个问题, 实现会话与窗口可以解绑分离; 窗口关闭时, 会话并不终止, 而是继续运行, 等到需要的时候, 再让会话绑定窗口.
+
+**sources linker**
+- [tmux wiki](https://github.com/tmux/tmux/wiki)
+- [Tmux 使用教程](https://www.ruanyifeng.com/blog/2019/10/tmux.html)
+- Tmux 的前缀键(prefix keyboard)默认是 'Ctrl + b', 配置文件里面可以对此进行修改
+- [Oh my tmux](https://github.com/gpakosz/.tmux)
+- [Vim](https://github.com/vim/vim)
+- [NeoVim](https://github.com/neovim/neovim)
+- 如何利用 NeoVim 打造现代终端代码 IDE
+- [LunarVim](https://github.com/lunarvim/lunarvim)
+- [SpaceVim](https://github.com/SpaceVim/SpaceVim/)
+
+
+### Quick Start
 
 ```bash
-# 0. install tmux
+# Step 0. install tmux
+sudo apt update && sudo apt upgrade
 sudo apt install tmux
 
-# 1. configure file
-touch ~/.tmux.conf
+sudo nala update && sudo nala upgrade
+sudo nala instal tmux
 
-# 2. prefix keyboard
-Ctrl + b
+# 查看 tmux 版本
+tmux -V
 
-# 3. command help
+# Step 1. 启动 tmux
+# 默认设置 session 的编号为 '0'
+tmux
+
+# Step 2. 查看帮助信息
 Ctrl + b, +?
+# enter 'q' or 'Esc' t退出查看
+
+# Step 3. 退出 tmux
+exit
+# or enter 'Ctrl + d'
 ```
+
+### Session Management
 
 ```bash
-# tmux configure file
-# tmux status line
-# 重新加载配置文件
-# bind-key R source-file ~/.config/tmux/.tmux.conf
-# bind-key R source-file ~/.tmux.conf
-# display-message "   Config successfully reloaded"
+# 新建一个 session, 并设置 session 的名称为 'training'
+tmux new -s training
 
-# 默认情况下，tmux 中使用 vim 编辑器，文本内容的配色和直接使用vim时有些差距，此时需要开启256 colors的支持
-set-option -g default-terminal "tmux-256color"
+# and then training model on Server
+python train.py
 
-set-option -g status-utf8 on # 状态栏支持utf8
+# 分离会话, 此时模型的训练依然需要进行
+# or enter 'Ctrl + b', 'd'
+tmux detach
 
-set-option -g status-bg black # 设置状态栏背景黑色
-set-option -g status-fg yellow # 设置状态栏前景黄色
-set-option -g status-style "bg=black, fg=yellow" # 状态栏前景背景色
+# 查看当前所有 session
+tmux ls
+tmux list-session
 
-# 全局设置 tmux 状态栏位置
-# set-option -g status-position top
-set-option -g status-position bottom
+# 接入已有的会话 'training'
+tmux attach -t training
 
-# 全局设置 tmux 状态栏的前景和背景颜色
-set-option -g status-style bg=black, fg=white
+# -------------------------
+# kill session 'training'
+tmux kill-session -t training
 
-# 设置自动重命名会话名
-set-option -g automatic-rename on
+# tmux switch 命令用于切换会话
+tmux new -s model
+tmux new -s task
+tmux
+tmux switch -t task
+tmux switch -t model
 
-# 设置 tmux 状态栏的左侧
-# 左侧字符占据的长度
-set-option -g status-left-length 20
-# set-option -g status-left '#(echo Hello WeiLi)'
-# 显示会话名
-set-option -g status-left '#[fg=colour140]#(echo "Session: )"#[fg=colour130]#{session_name}'
-
-# tmux 状态栏中间调整
-set-option -g status-justify centre
-
-# 设置 tmux 状态栏的右侧
-set-option -g status-right '#(whoami)#(date)'
-# 时间 1 秒更新一下
-set-option -g status-interval 1
-
-set-option -wg window-status-format " #I #W " # 状态栏窗口名称格式
-set-option -wg window-status-current-format " #I:#W#F " # 状态栏当前窗口名称格式(#I：序号，#w：窗口名称，#F：间隔符)
-set-option -wg window-status-separator "" # 状态栏窗口名称之间的间隔
-set-option -wg window-status-current-style "bg=red" # 状态栏当前窗口名称的样式
-set-option -wg window-status-last-style "fg=red" # 状态栏最后一个窗口名称的样式
-
-set-option -g message-style "bg=#202529, fg=#91A8BA" # 指定消息通知的前景、后景色
-
+# 分屏需要理解的概念, 基本用不到, 很多终端都支持这个功能
+# Session | Window | Pane
 ```
+
+### Oh-my-tmux
+
+- 配置定制, ^_^, 开箱即用就是最简单最好的
+- 同时在 tmux 中可以配置 vim/NeoVim/SpaceVim/LunarVim
