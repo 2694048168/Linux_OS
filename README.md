@@ -1,12 +1,29 @@
 ![Linux Logo](./logo.jpg)
 
---------------------------------------------------------------------------------
-
-## Linux Operating System
-
 ![Linux Logo](./LinuxOS.jpg)
 
-## Linux Command Tricks
+--------------------------------------------------------------------------------
+### Powershell on Windows Termianl
+
+```powershell
+# git bash
+# 将 'D:\Git\usr\bin' 添加到环境变量, 可以使用 Linux 一些常用命令
+
+# 在终端打开当前路径(文件资源管理器) on Windows
+start .
+
+# 在终端打开文件资源管理器 on Mac
+open .
+```
+
+### Linux Operating System
+
+- Configureation
+- LinuxFundation
+- SystemProgrammingCPlusPlus
+
+
+### Linux Command line Tricks
 
 ```shell
 # 快速回到上一次的目录
@@ -68,25 +85,4 @@ mount | column -t
 
 ```
 
-
-
-
-## About Author
-
-### Talk is cheap. Show me the code.
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;——Linus Torvalds
-
-### 掌中星辰转日月，手心苍穹天外天。
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;——云主宰苍穹
-
-### Stay Hungry, Stay Foolish.
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;——Steve Jobs
-
---------------------------------------------------------------------------------
-
-- Mail：2694048168@qq.com
-- Weibo：云主宰苍穹
-- GitHub: https://github.com/2694048168/
-- Gitee：https://gitee.com/weili_yzzcq/
-
---------------------------------------------------------------------------------
+[Wei Li Blog](https://2694048168.github.io/blog/)

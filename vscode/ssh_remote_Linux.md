@@ -1,6 +1,6 @@
-# SSH 远程登入服务器，图形化远程控制，文本传输和辅助脚本
+## SSH 远程登入服务器，图形化远程控制，文本传输和辅助脚本
 
-## SSH 安全登入
+### SSH 安全登入
 
 ```shell
 # step 1. Linux 服务器安装 SSH 服务程序 并打开 ssh 服务的端口 22/21
@@ -13,11 +13,11 @@ ip addr
 ssh user_name@ip_linux_server
 ```
 
-## 图形化远程
+### 图形化远程
 
 - TeamViewer 安装在 Linux 服务器和自己的客户端，利用该软件进行图形化远程
 
-## SSH 文本传输
+### SSH 文本传输
 
 ```shell
 # 远程传输文件
@@ -27,7 +27,7 @@ scp /local_dir/files user_name@ip_linux_server:~/linux_dir
 scp user_name@ip_linux_server:~/linux_dir /local_dir/files 
 ```
 
-## SSH 脚本辅助
+### SSH 脚本辅助
 
 - 利用 shell 脚本完成在服务器端的流水线任务处理
 - 利用 python 脚本完成一些特定的任务批处理
