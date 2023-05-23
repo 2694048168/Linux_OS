@@ -8,6 +8,7 @@
 - Code Snippets; 源代码片段管理，快捷键入源代码，提高效率
 - [File] --> [Preferences] --> [User Snippets]; 
 - [Ctrl] + [Shift] + p, 调出命令面板，输入 snippet, 选择对应的语言，参考模板进行自定义代码片段
+- [Ctrl] + [Shift] + p, 调出命令面板，输入 screencast, 打开键盘按键回显功能
 
 ## vscode 加载和配置
 
