@@ -2,6 +2,23 @@
 
 ![Linux Logo](./LinuxOS.jpg)
 
+### Features
+
+```
+. Linux_OS
+|—— CppCodeSnippets
+|   |—— C++ 常用代码片段
+|—— CMakeCodeSnippets
+|   |—— CMake 常用代码片段
+|—— PythonCodeSnippets
+|   |—— Python 常用代码片段
+|—— vscode
+|   |—— VSCode 常用技巧以及配置
+|   |—— VS 项目属性配置说明
+|—— Logo.png
+|—— README.md
+```
+
 --------------------------------------------------------------------------------
 ### Powershell on Windows Termianl
 

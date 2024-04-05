@@ -1,0 +1,26 @@
+cmake_minimum_required(VERSION 3.20 FATAL_ERROR)
+
+project(CMake_Tutorial
+    VERSION 0.1.1
+    DESCRIPTION "the CMake tutorial"
+    LANGUAGES CXX C CUDA
+)
+
+set(CMAKE_C_STANDARD 17)
+set(CMAKE_C_STANDARD_REQUIRED ON)
+# 只启用 ISO C 标准的编译器标志, 而不使用特定编译器的扩展
+set(CMAKE_C_EXTENSIONS OFF)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+# 只启用 ISO C++ 标准的编译器标志, 而不使用特定编译器的扩展
+set(CMAKE_CXX_EXTENSIONS OFF)
+set(CMAKE_BUILD_TYPE "Debug") # "Release" | "Debug"
+if(CMAKE_BUILD_TYPE)
+    message(STATUS "The build type is ${CMAKE_BUILD_TYPE}")
+endif()
+
+add_executable(main)
+target_sources(main
+    PRIVATE
+        "main.cpp"
+)

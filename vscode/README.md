@@ -81,6 +81,43 @@ from function_packages_dir import function_file_name
 - 可以利用 VSCode 和 PyCharm 的 SSH 进行远程连接进行开发
 
 
+## vscode 插件推荐
+- C++
+    - Extension ID: jeff-hykin.better-cpp-syntax 快速提示C++代码
+    - Extension ID: ms-vscode.cpptools 微软VSCode的对 C++ 支持
+    - Extension ID: hars.CppSnippets C++ 代码片段
+    - Extension ID: llvm-vs-code-extensions.vscode-clangd VSCode 中CLangd支持
+    - Extension ID: cschlosser.doxdocgen VSCode 中注释格式支持
+- Python
+    - Extension ID: njpwerner.autodocstring 快速写 Python 注释
+    - Extension ID: ms-python.black-formatter 快速对 Python 代码进行格式化
+    - Extension ID: ms-python.python 微软VSCode的对 Python 支持
+- Utility
+    - Extension ID: christian-kohler.path-intellisense 微软VSCode中快速对文件路径智能提示
+    - Extension ID: vscode-icons-team.vscode-icons 微软VSCode中各种icon图标支持
+    - Extension ID: skacekachna.win-opacity 微软VSCode中设置窗口透明度支持
+    - Extension ID: usernamehw.errorlens 微软VSCode中对错误的直接智能静态提示
+    - Extension ID: aaron-bond.better-comments 微软VSCode中对注释(特殊符号)的分类颜色智能提示
+    - Extension ID: streetsidesoftware.code-spell-checker 微软VSCode中对单词的拼写检查
+    - Extension ID: w88975.code-translate 微软VSCode中对单词的选中翻译
+- CMake
+    - Extension ID: twxs.cmake 微软VSCode中CMake支持
+    - Extension ID: josetr.cmake-language-support-vscode 微软VSCode中CMake语言的支持
+    - Extension ID: ms-vscode.cmake-tools 微软VSCode的CMake状态栏工具按钮
+- Git
+    - Extension ID: eamodio.gitlens 微软VSCode中对Git的可视化支持
+- Remote
+    - Extension ID: ms-vscode-remote.remote-wsl 微软VSCode中对WSL的支持
+    - Extension ID: ms-vscode-remote.remote-ssh 微软VSCode中对SSH远程连接支持
+    - Extension ID: ms-azuretools.vscode-docker 微软VSCode中对Docker连接支持
+- Themes
+    - Extension ID: dracula-theme.theme-dracula
+    - Extension ID: PKief.material-icon-theme
+    - Extension ID: azemoh.one-monokai
+    - Extension ID: zhuangtongfa.Material-theme
+    - Extension ID: ahmadawais.shades-of-purple
+
+
 ## About Author
 
 ### Talk is cheap, show me the code.

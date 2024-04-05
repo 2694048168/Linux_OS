@@ -1,0 +1,15 @@
+set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
+set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
+
+# 把 "IMAGES" 指代的所有内容都拷贝到可执行文件目录下
+file(GLOB IMAGES 
+    "${PROJECT_SOURCE_DIR}/images/lena.jpg"
+    "${PROJECT_SOURCE_DIR}/images/cat.jpg"
+)
+if(CMAKE_SYSTEM_NAME MATCHES "Windows")
+    message(STATUS "====> On Windows")
+    file(COPY ${IMAGES} DESTINATION "${EXECUTABLE_OUTPUT_PATH}/Debug")
+else() # Linux or Darwin(Mac OS) 
+    message(STATUS "====> On Linux or Mac")
+    file(COPY ${LIBRARY_SHATED} DESTINATION "${EXECUTABLE_OUTPUT_PATH}")
+endif()
