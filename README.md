@@ -15,12 +15,18 @@
 |—— vscode
 |   |—— VSCode 常用技巧以及配置
 |   |—— VS 项目属性配置说明
+|—— UbuntuConfig
+|   |—— README Ubuntu常用配置说明
+|—— DebianConfig
+|   |—— README Debian常用配置说明
+|—— VSLinux
+|   |—— Visual Studio 配置 Linux 开发环境
 |—— Logo.png
 |—— README.md
 ```
 
 --------------------------------------------------------------------------------
-### Powershell on Windows Termianl
+### Powershell on Windows Terminal
 
 ```powershell
 # git bash
