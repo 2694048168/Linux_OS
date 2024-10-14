@@ -1,0 +1,47 @@
+stages:
+  - build
+  - deploy
+
+pre-job:
+  stage: .pre
+  script:
+    - echo ".pre 始终是整个管道Pipeline的第一个运行阶段"
+    - echo ".pre 生效的前提是必须Pipeline被创建, 即至少有一个用户自定义job"
+
+build-job:
+  stage: build
+  tags:
+    - Shared
+  only:
+    - main
+  before_script:
+    - echo "用来定义所有job之前运行的命令"
+  script:
+    - echo "compile and build the project"
+    - git --version
+    - gcc --version
+    - g++ --version
+    - echo "install the project"
+  after_script:
+    - echo "用来定义所有job之后运行的命令"
+
+deploy-job:
+  stage: deploy
+  tags:
+    - Project
+  only:
+    - main
+  before_script:
+    - echo "用来定义所有job之前运行的命令"
+  script:
+    - echo "install the project"
+    - cmake --version
+    - make --version
+  after_script:
+    - echo "用来定义所有job之后运行的命令"
+
+post-job:
+  stage: .post
+  script:
+    - echo ".post 始终是整个管道Pipeline的最后一个运行阶段"
+    - echo ".post 生效的前提是必须Pipeline被创建, 即至少有一个用户自定义job"
