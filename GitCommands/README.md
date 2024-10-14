@@ -1,5 +1,7 @@
 ## Git commands for source code version control
 
+![Pipeline of Git](pipeline_git.png)
+
 ### Feature
 - [Git Reference doc](https://git-scm.com/docs)
 - [Git Book](https://git-scm.com/book/en/v2)
