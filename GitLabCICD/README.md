@@ -37,11 +37,16 @@
     - DevOps: Development(开发)和 Operations(运维), 代表的理念和实践
     - Continuous Integration --> Continuous Delivery --> Continuous Deployment 
     - 持续集成 ---> 持续交付 ---> 持续部署 
-    - GitLab 配置 CI/CD ---> Pipeline and Runner ---> 'gitlab-ci.yml' config file 
-    - GitLab 使用 webhooks 配置钉钉/企业微信做消息通知, 同时邮件通知 
-6. Git and 开发流程管理
+    - GitLab 配置 CI/CD ---> Pipeline and Runner ---> '.gitlab-ci.yml' config file
+    - .gitlab-ci.yml 脚步基本流程构建 Pipeline ---> stage and job
+    - [YML check online](https://www.yamllint.com/)
+    - [GitLab CI-CD doc](https://docs.gitlab.com/ee/topics/build_your_application.html)
+    - [.gitlab-ci.yml template](https://gitlab.com/gitlab-org/gitlab-foss/tree/master/lib/gitlab/ci/templates)
+    - GitLab 使用 webhooks 配置钉钉/企业微信做消息通知, 同时邮件通知
+    - 配置并开启GitLab pages功能, 便于项目展示和文档展示等等
+6. Git 开发流程管理
     - Git basic operators for source code version control
-    - Git Commit Message 规范
+    - Git Commit Message 规范: "type(scope): subject-commit-message"
     - Branch manager and project pipeline: main/develop/features/hotfix/test branches
     - Pull Request(**PR**) for GitHub or Merge Request(**MR**) for GitLab to merge branch
     - Cooperative development and merge with **conflicts** and **Resolve** it
@@ -288,5 +293,16 @@ sudo gitlab-runner register \
   --token glrt-3zCPb1gRqYrtJw5HRf5v \
   --executor "shell"
 # ------------------------------------------------------------------------
+
+# 配置并开启 GitLab pages 功能
+vim /etc/gitlab/gitlab.rb
+# ---------- 修改内容, 打开注释或者修改内容即可 ----------
+##! Define to enable GitLab Pages
+pages_external_url "http://pages.example.com/"
+gitlab_pages['enable'] = true
+# -----------------------------------------------------
+# 重新加载配置
+sudo gitlab-ctl reconfigure
+# gitlab Reconfigured!
 
 ```
