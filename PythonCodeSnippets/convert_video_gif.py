@@ -16,6 +16,7 @@
 @Description: 
 """
 
+import os
 import glob
 
 import cv2
@@ -23,6 +24,7 @@ from PIL import Image
 
 
 def convert_mp4_jpg(input_file):
+    os.makedirs("output", exist_ok=True)
     # 先将mp4文件的所有帧读取出保存为图片
     video_capture = cv2.VideoCapture(input_file)
     still_reading, image = video_capture.read()
@@ -75,7 +77,8 @@ def convert_gif_to_mp4():
 
 # ==========================
 if __name__ == "__main__":
-    filepath = R"C:\Users\26940\Desktop\Recording 2024-06-22 123005.mp4"
+    filepath = R"./Recording 2024-10-27 124200.mp4"
     save_filename = "./output.gif"
 
     convert_mp4_gif(filepath, save_filename)
+    # convert_images_gif(output_file=save_filename)

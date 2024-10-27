@@ -2,6 +2,8 @@
 
 > [Geek for VSCode](https://geek-docs.com/vscode/vscode-tutorials/what-is-vscode.html)
 
+> 详细配置请查看 [VSCode_config.md](VSCode_config.md)
+
 ## vscode 快捷键 (减少使用鼠标，编写源代码的时候尽量使用键盘)
 
 - [Help] --> [Keyboard Shortcuts Reference]; 即可在浏览器中打开对应操作系统的快捷键文件
