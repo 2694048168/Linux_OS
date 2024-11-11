@@ -75,12 +75,29 @@ from function_packages_dir import function_file_name
 - C/C++ Microsoft; 智能提示和调试
 - CMake Microsoft; 提供 CMake 语言支持和提示
 - CMake Tools Microsoft; 提供将 CMake 命令和可视化按钮进行关联
-- Code Spell Checker; 源代码单词的拼写检查，便于变量名
+- Code Spell Checker; 源代码单词的拼写检查，便于变量名, 帮助提高代码的可读性和质量
 - Code Translate; 源代码的单词实时翻译，便于理解
 - Path Intellisense; 智能提示并补全文件路径
 - Python Microsoft; 提供智能提示和补全
 - Remote Development(SSH and WSL); 远程开发和链接服务器
 - 可以利用 VSCode 和 PyCharm 的 SSH 进行远程连接进行开发
+- Better Comments 是一个用于VSCode的插件, 帮助开发者通过不同颜色和样式来增强代码注释的可读性和可视化效果; 其主要作用包括: 注释分类、提高可读性、自定义标签等
+
+```C++
+// TODO: 用于待办事项
+// ! 用于重要或警告信息
+// ? 用于疑问或需要确认的内容
+// * 用于强调或重要说明
+// 其他普通注释
+```
+
+- VSCode属性配置设置: Indent Rainbow; Indenticator; Trailing Spaces; show spaces;
+- Color Highlight(naumovs.color-highlight): 插件的作用是自动检测代码中的颜色值(如十六进制、RGB、RGBA、HSL 等), 并在编辑器中直接显示相应的颜色背景, 使得开发者可以更直观地识别和调整颜色配置
+- Color Info(bierner.color-info) 的作用是在代码中显示颜色值的实时预览，方便设计和调试
+- koroFileHeader(OBKoro1.korofileheader) 主要用于在文件中自动添加和管理头部注释
+- TODO Highlights(zerefdev.todo-highlighter) 高亮显示代码中的 TODO、FIXME 等注释。其主要用于自动识别并高亮显示代码中的 TODO、FIXME 等标记，方便快速定位待办事项
+- Image Preview(kisstkondoros.vscode-gutter-preview) 主要用于允许用户在编辑器中直接预览图像文件，而无需打开外部查看器，提高工作效率
+- 
 
 
 ## vscode 插件推荐
@@ -108,6 +125,7 @@ from function_packages_dir import function_file_name
     - Extension ID: ms-vscode.cmake-tools 微软VSCode的CMake状态栏工具按钮
 - Git
     - Extension ID: eamodio.gitlens 微软VSCode中对Git的可视化支持
+    - Extension ID: donjayamanne.githistory 查看git提交日志
 - Remote
     - Extension ID: ms-vscode-remote.remote-wsl 微软VSCode中对WSL的支持
     - Extension ID: ms-vscode-remote.remote-ssh 微软VSCode中对SSH远程连接支持
@@ -118,6 +136,8 @@ from function_packages_dir import function_file_name
     - Extension ID: azemoh.one-monokai
     - Extension ID: zhuangtongfa.Material-theme
     - Extension ID: ahmadawais.shades-of-purple
+    - Extension ID: Equinusocio.vsc-material-theme
+    - Extension ID: Equinusocio.vsc-material-theme-icons
 
 
 ## About Author
@@ -134,7 +154,6 @@ from function_packages_dir import function_file_name
 --------------------------------------------------------------------------------
 
 - Mail：2694048168@qq.com
-- Weibo：云主宰苍穹
 - GitHub: https://github.com/2694048168/
 - Gitee：https://gitee.com/weili_yzzcq/
 
