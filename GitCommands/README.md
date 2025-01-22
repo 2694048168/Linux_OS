@@ -114,7 +114,65 @@ cd instant-ngp
 git clone --recursive https://github.com/NVlabs/instant-ngp.git -b master NGP
 cd NGP
 
+
 ```
+
+### Modern Git Commands
+- git switch: 安全切换分支, since Git 2.23.0
+- 通过将 git checkout 的功能拆分, Git 团队创建了两个新的、更专业的命令:
+    - git switch: 专门用于在分支之间进行切换
+    - git restore: 专门用于还原文件内容
+
+```shell
+# 切换到已存在的分支
+$ git switch <branch-name>
+
+# 创建并切换到新分支
+$ git switch -c <new-branch-name>
+
+# 从远程仓库创建并跟踪一个本地分支
+$ git switch -c <new-branch-name> --track <remote>/<branch-name>
+
+# 返回到上一个分支
+$ git switch -
+```
+
+- git restore: 安全撤销更改 since Git 2.23.0 
+- git restore 主要用来撤销工作目录中的更改,
+    - 可以用来丢弃未提交的工作树修改、还原删除的文件, 或者将文件重置为之前的某个提交状态
+    - 使用 git restore 时，可以选择性地指定 --staged 来影响暂存区
+    - 或者 --worktree 来影响工作目录
+    - 如果同时指定了这两个选项, 则会同时影响暂存区和工作目录
+- git restore 是一个相对安全的操作, 因为它不会改变分支的历史记录, 它只会影响工作目录和/或暂存区
+
+```shell
+# 恢复工作目录中的文件到最近一次提交的状态
+$ git restore <file>
+
+# 从指定的提交中恢复文件到工作目录
+$ git restore --source=<commit> <file>
+
+# 取消暂存区的更改（类似于 git reset HEAD <file>）
+$ git restore --staged <file>
+
+# 恢复所有文件到指定的提交状态
+$ git restore --source=<commit> .
+
+# 恢复所有已删除的文件
+$ git restore -w -- *
+
+# 丢弃暂存区和工作目录中的更改（即恢复到指定的提交状态）
+$ git restore --staged --worktree <file>
+```
+
+- git worktree: 同时在多个分支工作
+- git sparse-checkout: 高效处理大型仓库 since Git 2.25.0
+    - 如果只想检出 src 目录及其子目录中的文件, 可以这样做
+    - $ git sparse-checkout set src/
+- git range-diff: 比较提交范围之间的更改 since Git 2.19.0
+- git maintenance: 自动化仓库健康 since Git 2.30.0
+- git log --remerge-diff: 更好地理解合并 since Git 2.35
+
 
 ### Git forward and backward
 
