@@ -11,6 +11,8 @@
 - [File] --> [Preferences] --> [User Snippets]; 
 - [Ctrl] + [Shift] + p, 调出命令面板，输入 snippet, 选择对应的语言，参考模板进行自定义代码片段
 - [Ctrl] + [Shift] + p, 调出命令面板，输入 screencast, 打开键盘按键回显功能
+- [Ctrl] + [Shift] + p, 调出命令面板，输入 move terminal into area/window(必须有一个终端)
+
 
 ## vscode 加载和配置
 
