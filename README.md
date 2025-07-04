@@ -1,4 +1,4 @@
-![Linux Logo](../LinuxOS.jpg)
+[![Linux Logo](../LinuxOS.jpg)
 
 > Debian12-Gnome or Debian12-Xfce 使用过程中常用的配置和命令
 
