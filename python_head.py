@@ -14,9 +14,9 @@
 @Description: 
 """
 
-import os
-import glob
+ os
+ glob
 
 # -------------------------
-if __name__ == "__main__":
-    pass
+ __name__ == "__main__":
+    
