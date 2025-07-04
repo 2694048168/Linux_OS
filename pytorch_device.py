@@ -2,8 +2,8 @@
 # $: CUDA_VISIBLE_DEVICES=0,1 python train.py
 
 # set the environ variable in source code in python file
- os
- torch
+import os
+import torch
 
 os.environ["CUDA_VISIBLE_DEVICES"] = "0,1"
 
