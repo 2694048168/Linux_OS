@@ -1,14 +1,14 @@
-import os
-import numpy as np
-import torch
-import random
+ os
+ numpy    np
+ torch
+ random
 
 
 # set the random seed,
 # the result of deep learning can be complete recovery,
 # relieve affect to final result because of some random operations.
-def set_seed(seed=42):
-    if seed is None:
+    set_seed(seed=42):
+       seed        :
         seed = random.randint(1, 10000)
     print("========> Random Seed is {}".format(seed))
 
