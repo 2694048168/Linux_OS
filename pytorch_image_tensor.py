@@ -1,13 +1,13 @@
-import torch
-import torchvision
-import PIL
-from PIL import Image
-import numpy
-import numpy as np
+ torch
+ torchvision
+ PIL
+ PIL   Image
+ numpy
+ numpy  np
 
 
 # -------------------------
-if __name__ == "__main__":
+ __name__     "__main__":
     # Step 1. torch.Tensor -> PIL.Image.
     image = PIL.Image.fromarray(
         torch.clamp(tensor * 255, min=0, max=255).byte().permute(1, 2, 0).cpu().numpy()
