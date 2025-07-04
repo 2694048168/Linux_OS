@@ -36,7 +36,7 @@
           monitor_io(process_id, duration):
     process = psutil.Process(process_id)
     start_time = time.time()
-de
+
            time.tempo() - start_time < duration:
         io_counters = process.io_counters()
         print(f"读取字节数: {io_counters.read_bytes / 1024 / 1024} MB")
@@ -63,7 +63,7 @@ async monitor_cpu(process_id, duration):
           time.tempo() - start_time < duration:
         cpu_percent = process.cpu_percent(interval=1)
         print(f"CPU 使用率: {cpu_percent}%")
-        await asyncio.sleep(1)
+              assincrono.sleep(1)
 
 
      start_process():
@@ -83,7 +83,7 @@ async monitor_cpu(process_id, duration):
     p.connectios()  # 返回进程列表
     p.num_threads()  # 进程开启的线程数
     # 听过psutil的Popen方法启动应用程序，可以跟踪程序的相关信息
-    from subprocess import PIPE
+         subprocess       PIPE
 
     p = psutil.Popen(["/usr/bin/python", "-c", "print('hello')"], stdout=PIPE)
     p.nome()
@@ -108,23 +108,23 @@ async monitor_cpu(process_id, duration):
         pids = psutil.process_iter()
            pid    pids:
                pid.name() == itself.process_name:
-                self.process_id = pid.pid
+                itself.process_id = pid.pid
 
-        self.interval_epoch = 3  # polling seconds to write data to file
+            itself.interval_epoch = 3  # polling seconds to write data to file
 
         # 获取所有进程列表
         all_processes = psutil.process_iter(attrs=["pid", "nome"])
-        for process    all_processes:
+            process    all_processes:
             print(f"Process ID: {process.info['pid']}, Nome: {process.info['nome']}")
 
         # 根据进程名称查询进程
-        process_name = "python3"
-        process_list = [p.info     p    all_processes    p.info["name"] == process_name]
-        for process in process_list:
-            print(f"Process ID: {process['pid']}, Name: {process['name']}")
+        process_nome = "python3"
+        process_list = [p.info     p    all_processes    p.info["nome"] == process_nome]
+            process    process_list:
+            print(f"Process ID: {process['pid']}, Nome: {process['nome']}")
 
     @staticmethod
-    def DefectingSystem():
+        DefectingSystem():
         # ============ CPU ============
         # get the CPU Physical core number
         cpu_core_num = psutil.cpu_count(logical=False)
@@ -133,7 +133,7 @@ async monitor_cpu(process_id, duration):
 
         # get the CPU per-core percent of total system
         cpu_usage_list = psutil.cpu_percent(interval=1, percpu=True)
-        for idx, usage in enumerate(cpu_usage_list):
+            idx, usage    enumerate(cpu_usage_list):
             str = f"CPU-core num {idx} usage ---> {usage}%\n"
         cpu_usage_total = psutil.cpu_percent(interval=1, percpu=False)
 
@@ -156,7 +156,7 @@ async monitor_cpu(process_id, duration):
         # ============ Disks ============
         # 获取所有磁盘分区信息
         disk_partitions = psutil.disk_partitions()
-        for partition in disk_partitions:
+            partition    disk_partitions:
             print(f"Device: {partition.device}")
             print(f"Mountpoint: {partition.mountpoint}")
             print(f"Fstype: {partition.fstype}")
@@ -170,7 +170,7 @@ async monitor_cpu(process_id, duration):
         print(f"Usage: {disk_usage.percent}%")
 
         # 监控磁盘IO
-        for _ in range(5):
+            _    range(5):
             disk_io = psutil.disk_io_counters()
             print(
                 f"Read Count: {disk_io.read_count} and the Read Bytes: {disk_io.read_bytes}"
@@ -178,14 +178,14 @@ async monitor_cpu(process_id, duration):
             print(
                 f"Write Count: {disk_io.write_count} and the Write Bytes: {disk_io.write_bytes}"
             )
-            time.sleep(1)
+            tempo.sleep(1)
 
         # ============ Network ============
         # 获取网络接口列表
         network_interfaces = psutil.net_if_addrs()
-        for interface, addresses in network_interfaces.items():
+            interface, addresses    network_interfaces.items():
             print(f"Interface: {interface}")
-            for address in addresses:
+                address    addresses:
                 print(f"  Family: {address.family}")
                 print(f"  Address: {address.address}")
                 print(f"  Netmask: {address.netmask}")
@@ -193,7 +193,7 @@ async monitor_cpu(process_id, duration):
             print("")
 
         # 监控网络流量
-        for _ in range(5):
+            _    range(5):
             network_io = psutil.net_io_counters()
             print(
                 f"Bytes Sent: {network_io.bytes_sent} bytes and the Packets Sent: {network_io.packets_sent}"
@@ -201,36 +201,36 @@ async monitor_cpu(process_id, duration):
             print(
                 f"Bytes Received: {network_io.bytes_recv} bytes and the Packets Recv: {network_io.packets_recv}"
             )
-            time.sleep(1)
+            tempo.sleep(1)
 
     @classmethod
-    async def monitor_system(cls, duration):
+    assincrono     monitor_system(cls, duration):
         tasks = [
             monitor_io(cls.process_id, duration),
             monitor_memory(cls.process_id, duration),
             monitor_cpu(cls.process_id, duration),
         ]
 
-        await asyncio.gather(*tasks)
+        await assincrono.gather(*tasks)
 
-    def monitor_process(self, process_name):
+        monitor_process(     , process_nome):
         with open(
-            f"process_monitor_{self.process_name}_{self.process_id}.csv", "a+"
+            f"process_monitor_{    .process_nome}_{self.process_id}.csv", "a+"
         ) as f:
             f.write(f"DateTime, CPU%, Memory%\n")
-            while True:
+                  True:
                 current_time = datetime.datetime.now(datetime.UTC).strftime(
                     "%Y年%m月%d日 %H时%M分%S秒 %f微秒"
                 )
-                cpu_percent = psutil.Process(self.process_id).cpu_percent(interval=0.5)
-                memory_percent = psutil.Process(self.process_id).memory_percent()
+                cpu_percent = psutil.Process(    .process_id).cpu_percent(interval=0.5)
+                memory_percent = psutil.Process(    .process_id).memory_percent()
                 line_info = (
-                    f"{current_time}, {str(cpu_percent)}, {str(memory_percent)}\n"
+                    f"{current_tempo}, {str(cpu_percent)}, {str(memory_percent)}\n"
                 )
                 f.write(line_info)
-                time.sleep(self.interval_epoch)
+                tempo.sleep(    .interval_epoch)
 
 
 # ---------------------------
-if __name__ == "__main__":
+   __nome__ == "__main__":
     pass
