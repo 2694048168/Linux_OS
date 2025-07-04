@@ -3,6 +3,7 @@
 [![Trigger Windows25 CI](https://github.com/actions/runner-images/actions/workflows/windows2025.yml/badge.svg)](https://github.com/actions/runner-images/actions/workflows/windows2025.yml)
 
 [![GitKraken shield][kraken]][kraken-ref]
+
 <!-- markdownlint-disable first-header-h1 -->
 
 [![Linter](https://github.com/actions/runner-images/actions/workflows/linter.yml/badge.svg)](https://github.com/actions/runner-images/actions/workflows/linter.yml)
