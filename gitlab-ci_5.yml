@@ -1,0 +1,155 @@
+# if job not specify the 'before_script', using the default 
+before_script:
+    - echo "[default]用来定义所有job之前运行的命令"
+
+# pipeline variable
+variables:
+  DOMAIN: gitlab.com
+  AUTHOR: Ithaca
+
+# 顶级workflow关键字使用整个管道,并确定是否创建管道
+workflow:
+  rules:
+    - if: '$DOMAIN' == "gitlab.com"
+      when: always
+    - when: never # always or never
+
+# cache-缓存
+# 存储编译项目所需的运行时依赖项,指定项目工作空间中需要再job之间缓存的文件或目录
+# 全局cache定义在job之外, 针对所有job生效, job中cache优先于全局
+
+# artifacts-制品
+# 用于指定在作业成功或者失败时应附加到作业的文件或目录的列表
+# 作业完成后, 工件制品将被发送到GitLab, 并可以在GitLab UI中下载
+# ----Release(Tag) 制品
+# ----单元测试报告 reports 和 覆盖率
+
+# dependencies-获取制品
+# 定义要获取工件制品的作业列表,只能从当前阶段前执行的阶段定义的作业
+# 如, 整个大项目,测试demo必须依赖于生成库的 DLL 制品
+
+# needs-阶段并行(stage parallel) 
+# include-引入本地配置, 引入外部YAML文件 .yml or .yaml
+# https://gitlab.com/gitlab-org/gitlab-foss/tree/master/lib/gitlab/ci/templates
+# extends & include 联合使用,类似继承机制(已经写好的Template)
+# trigger-触发下游管道, 多项目管道/父子管道
+# image-指代 Runner 的 Docker 容器image, Runner注册的时候执行器选择Docker
+# services-指代作业期间运行另一个Docker镜像, 并link到image关键字定义的镜像,如MySQL数据库服务
+# environment-环境变量/inherit
+# inherit-使用或者禁止全局定义的环境变量
+
+stages:
+  - build
+  - test
+  - codeScan
+  - deploy
+
+pre-job:
+  stage: .pre
+  # job-level variable
+  variables:
+    NUM: 42
+    STR: "The answer is $NUM"
+  script:
+    - echo ".pre 始终是整个管道Pipeline的第一个运行阶段"
+    - echo ".pre 生效的前提是必须Pipeline被创建, 即至少有一个用户自定义job"
+    - echo $STR
+
+build-job:
+  stage: build
+  # 指定执行的 Runner
+  tags:
+    - Shared
+  only:
+    - main
+  before_script:
+    - echo "用来定义所有job之前运行的命令"
+  script:
+    - echo "compile and build the project"
+    - git --version
+    - gcc --version
+    - g++ --version
+    - echo "install the project"
+    - sleep 12;
+  after_script:
+    - echo "用来定义所有job之后运行的命令"
+
+# the job can be parallel exec. on diff. Runner
+unittest1-job:
+  stage: test
+  tags:
+    - Shared
+  script:
+    - echo "run the unit test example1"
+    - echo "$DOMAIN"
+    - sleep 12
+  # 运行失败, 不阻塞 pipeline, default=false
+  allow_failure: true
+  # 作业job超时, 可以超过项目级别的超时, 但不能超过Runner特定的超时
+  timeout: 30m
+
+unittest2-job:
+  stage: test
+  tags:
+    - Project
+  script:
+    - echo "run the unit test example2"
+    - echo "$AUTHOR"
+    - sleep 12
+  # 运行失败, 不阻塞 pipeline, default=false
+  allow_failure: true
+  # 作业job超时, 可以超过项目级别的超时, 但不能超过Runner特定的超时
+  timeout: 1h 30m
+  # 通过一系列的构建规则匹配最佳作业动态属性
+  rules:
+    - if: '$AUTHOR' == "Ithaca"
+      when: manual
+    - when: on_success
+
+codeScan-job:
+  stage: codeScan
+  tags:
+    - Group
+  script:
+    - echo "code scan"
+    - sleep 5;
+  # 默认情况下,失败情况下重试作业,max指代最大重试次数;when指代重试错误类型
+  when: manual
+  # 配置并行运行的作用实例数, [2, 50], codeScan 1/5 codeScan 2/5 ...
+  parallel: 5
+  retry: 
+    max: 2
+    when:
+      # - always # default
+      # - unknown_failure
+      # - stuck_or_timeout_failure
+      # - job_execution_timeout
+      - script_failure
+
+deploy-job:
+  stage: deploy
+  tags:
+    - Project
+  # only and except 用分支策略限制job构建
+  # only 定义那些分支和标签的git项目会被该job执行
+  # except 定义那些分支和标签的git项目不会被该job执行
+  # 如, deploy部署到生产环境,只能是 main/master 分支
+  only:
+    - main
+  script:
+    - echo "install the project"
+    - cmake --version
+    - make --version
+    - sleep 2;
+  # 当作业job失败后重试作业的次数(总次数=retry+1)
+  retry: 2
+
+post-job:
+  stage: .post
+  script:
+    - echo ".post 始终是整个管道Pipeline的最后一个运行阶段"
+    - echo ".post 生效的前提是必须Pipeline被创建, 即至少有一个用户自定义job"
+
+# if job not specify the 'after_script', using the default 
+after_script:
+    - echo "[default]用来定义所有job之后运行的命令"

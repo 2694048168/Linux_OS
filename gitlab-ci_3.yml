@@ -1,0 +1,115 @@
+# if job not specify the 'before_script', using the default 
+before_script:
+    - echo "[default]用来定义所有job之前运行的命令"
+
+# pipeline variable
+variables:
+  DOMAIN: gitlab.com
+  AUTHOR: Ithaca
+
+stages:
+  - build
+  - test
+  - codeScan
+  - deploy
+
+pre-job:
+  stage: .pre
+  # job-level variable
+  variables:
+    NUM: 42
+    STR: "The answer is $NUM"
+  script:
+    - echo ".pre 始终是整个管道Pipeline的第一个运行阶段"
+    - echo ".pre 生效的前提是必须Pipeline被创建, 即至少有一个用户自定义job"
+    - echo $STR
+
+build-job:
+  stage: build
+  # 指定执行的 Runner
+  tags:
+    - Shared
+  only:
+    - main
+  before_script:
+    - echo "用来定义所有job之前运行的命令"
+  script:
+    - echo "compile and build the project"
+    - git --version
+    - gcc --version
+    - g++ --version
+    - echo "install the project"
+    - sleep 12;
+  after_script:
+    - echo "用来定义所有job之后运行的命令"
+
+# the job can be parallel exec. on diff. Runner
+unittest1-job:
+  stage: test
+  tags:
+    - Shared
+  script:
+    - echo "run the unit test example1"
+    - echo "$DOMAIN"
+    - sleep 12
+  # 运行失败, 不阻塞 pipeline, default=false
+  allow_failure: true
+  # 作业job超时, 可以超过项目级别的超时, 但不能超过Runner特定的超时
+  timeout: 30m
+
+unittest2-job:
+  stage: test
+  tags:
+    - Project
+  script:
+    - echo "run the unit test example2"
+    - echo "$AUTHOR"
+    - sleep 12
+  # 运行失败, 不阻塞 pipeline, default=false
+  allow_failure: true
+  # 作业job超时, 可以超过项目级别的超时, 但不能超过Runner特定的超时
+  timeout: 1h 30m
+
+codeScan-job:
+  stage: codeScan
+  tags:
+    - Group
+  script:
+    - echo "code scan"
+    - sleep 5;
+  # 默认情况下,失败情况下重试作业,max指代最大重试次数;when指代重试错误类型
+  when: manual
+  # 配置并行运行的作用实例数, [2, 50], codeScan 1/5 codeScan 2/5 ...
+  parallel: 5
+  retry: 
+    max: 2
+    when:
+      # - always # default
+      # - unknown_failure
+      # - stuck_or_timeout_failure
+      # - job_execution_timeout
+      - script_failure
+
+deploy-job:
+  stage: deploy
+  tags:
+    - Project
+  only:
+    - main
+  script:
+    - echo "install the project"
+    - cmake --version
+    - make --version
+    - sleep 2;
+  # 当作业job失败后重试作业的次数(总次数=retry+1)
+  retry: 2
+
+post-job:
+  stage: .post
+  script:
+    - echo ".post 始终是整个管道Pipeline的最后一个运行阶段"
+    - echo ".post 生效的前提是必须Pipeline被创建, 即至少有一个用户自定义job"
+
+# if job not specify the 'after_script', using the default 
+after_script:
+    - echo "[default]用来定义所有job之后运行的命令"
