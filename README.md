@@ -1,3 +1,36 @@
+<!-- markdownlint-disable -->
+<p align="center">
+  <img
+    width="400"
+    src="https://raw.githubusercontent.com/jandedobbeleer/oh-my-posh/main/website/static/img/logo.png"
+    alt="Oh My Posh logo – Prompt theme engine for any shell"
+  />
+</p>
+<!-- markdownlint-enable -->
+
+![MIT license badge](https://img.shields.io/github/license/JanDeDobbeleer/oh-my-posh.svg)
+
+![Build Status badge](https://img.shields.io/github/actions/workflow/status/jandedobbeleer/oh-my-posh/release.yml?branch=main)
+
+[![Release version number badge][release-badge]][release]
+
+[![Documentation link badge ohmyposh.dev][docs-badge]][docs]
+
+![Number of GitHub Downloads badge](https://img.shields.io/github/downloads/jandedobbeleer/oh-my-posh/total?color=pink&label=GitHub%20Downloads)
+
+<!-- markdownlint-disable -->
+<div align="center" markdown="1">
+   <sup>Special thanks to:</sup>
+   <br>
+   <br>
+   <a href="https://www.warp.dev/oh-my-posh">
+      <img alt="Warp sponsorship" width="400" src="https://github.com/user-attachments/assets/c21102f7-bab9-4344-a731-0cf6b341cab2">
+   </a>
+
+
+_______________________________________
+
+
 > Debian12-Gnome or Debian12-Xfce 使用过程中常用的配置和命令
 
 ### 首次安装的基本配置
