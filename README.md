@@ -1,9 +1,3 @@
-![MIT license badge](https://img.shields.io/github/license/JanDeDobbeleer/oh-my-posh.svg)
-
-![Build Status badge](https://img.shields.io/github/actions/workflow/status/jandedobbeleer/oh-my-posh/release.yml?branch=main)
-
-![Number of GitHub Downloads badge](https://img.shields.io/github/downloads/jandedobbeleer/oh-my-posh/total?color=pink&label=GitHub%20Downloads)
-
 <!-- markdownlint-disable -->
 <div align="center" markdown="1">
    <sup>Special thanks to:</sup>
