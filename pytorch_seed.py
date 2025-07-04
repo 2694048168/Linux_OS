@@ -10,7 +10,7 @@
     set_seed(seed=42):
        seed        :
         seed = random.randint(1, 10000)
-    print("========> Random Seed is {}".format(seed))
+         ("========> Random Seed is {}".format(seed))
 
     # Even if you don't use them, you still have to import
     random.seed(seed)
