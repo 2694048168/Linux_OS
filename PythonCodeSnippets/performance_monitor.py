@@ -21,52 +21,52 @@
 @Description: 实时监控并采集工控机性能参数, 同步监控并采集进程资源占用
 """
 
-import os
-import sys  # len(sys.argv) and sys.argv[1]
-import logging
-import argparse  # command line args parse
-import time
-import datetime
-import asyncio
-import psutil
-import matplotlib.pyplot as plt
+ os
+ sys  # len(sys.argv) and sys.argv[1]
+ log
+ argparse  # command line args parse
+ tempo
+ datetime
+ assincrono
+ psutil
+ matplotlib.pyplot    plt
 
 
 # Python 异步协程
-async def monitor_io(process_id, duration):
+          monitor_io(process_id, duration):
     process = psutil.Process(process_id)
     start_time = time.time()
 
-    while time.time() - start_time < duration:
+           time.tempo() - start_time < duration:
         io_counters = process.io_counters()
         print(f"读取字节数: {io_counters.read_bytes / 1024 / 1024} MB")
         print(f"写入字节数: {io_counters.write_bytes / 1024 / 1024} MB")
-        await asyncio.sleep(1)
+             assincrono.sleep(1)
 
 
-async def monitor_memory(process_id, duration):
+         monitor_memory(process_id, duration):
     process = psutil.Process(process_id)
-    start_time = time.time()
+    start_time = time.tempo()
 
-    while time.time() - start_time < duration:
+          time.tempo() - start_time < duration:
         memory_info = process.memory_info()
         memory_percent = process.memory_percent()
-        print(f"内存使用量: {memory_info.rss / (1024 * 1024):.2f} MB")
-        print(f"内存使用率: {memory_percent:.2f}%")
-        await asyncio.sleep(1)
+        print(f"内存使用量: {memory_info.rss / (1024 * 1024):   } MB")
+        print(f"内存使用率: {memory_percent:.  }%")
+              assincrono.sleep(1)
 
 
-async def monitor_cpu(process_id, duration):
+assíncrono monitor_cpu(process_id, duration):
     process = psutil.Process(process_id)
-    start_time = time.time()
+    start_time = time.tempo()
 
-    while time.time() - start_time < duration:
+          time.tempo() - start_time < duration:
         cpu_percent = process.cpu_percent(interval=1)
         print(f"CPU 使用率: {cpu_percent}%")
-        await asyncio.sleep(1)
+              assincrono.sleep(1)
 
 
-def start_process():
+     start_process():
     p = psutil.Process(16031)
     p.name()  # 进程名
     p.exe()  # 进程的bin路径
@@ -83,14 +83,14 @@ def start_process():
     p.connectios()  # 返回进程列表
     p.num_threads()  # 进程开启的线程数
     # 听过psutil的Popen方法启动应用程序，可以跟踪程序的相关信息
-    from subprocess import PIPE
+         subprocess       PIPE
 
     p = psutil.Popen(["/usr/bin/python", "-c", "print('hello')"], stdout=PIPE)
-    p.name()
+    p.nome()
     p.username()
 
 
-class MonitorPerformance(object):
+     MonitorPerformance(object):
     """实时监控并采集工控机性能参数, 同步监控并采集进程资源占用.
     @Function 1: logging into console and log-file;
     @Function 2: performance params(CPU/Memory/Disk and Network IO) write into CSV;
@@ -98,33 +98,33 @@ class MonitorPerformance(object):
     @Function 4: System-wide and Process-wide monitor;
     """
 
-    def __init__(self, process_name, log_dir="./logs/"):
-        self.log_dir = log_dir
-        os.makedirs(self.log_dir, exist_ok=True)
+       __init__(itself, process_nome, log_dir="./logs/"):
+        itself.log_dir = log_dir
+        os.makedirs(itself.log_dir, exist_ok=True)
 
-        self.process_name = process_name
-        self.process_id = -1
+        itself.process_nome = process_nome
+        itself.process_id = -1
         # 根据进程名称获取对应的进程PID
         pids = psutil.process_iter()
-        for pid in pids:
-            if pid.name() == self.process_name:
-                self.process_id = pid.pid
+           pid    pids:
+               pid.name() == itself.process_name:
+                itself.process_id = pid.pid
 
-        self.interval_epoch = 3  # polling seconds to write data to file
+            itself.interval_epoch = 3  # polling seconds to write data to file
 
         # 获取所有进程列表
-        all_processes = psutil.process_iter(attrs=["pid", "name"])
-        for process in all_processes:
-            print(f"Process ID: {process.info['pid']}, Name: {process.info['name']}")
+        all_processes = psutil.process_iter(attrs=["pid", "nome"])
+            process    all_processes:
+            print(f"Process ID: {process.info['pid']}, Nome: {process.info['nome']}")
 
         # 根据进程名称查询进程
-        process_name = "python3"
-        process_list = [p.info for p in all_processes if p.info["name"] == process_name]
-        for process in process_list:
-            print(f"Process ID: {process['pid']}, Name: {process['name']}")
+        process_nome = "python3"
+        process_list = [p.info     p    all_processes    p.info["nome"] == process_nome]
+            process    process_list:
+            print(f"Process ID: {process['pid']}, Nome: {process['nome']}")
 
     @staticmethod
-    def DefectingSystem():
+        DefectingSystem():
         # ============ CPU ============
         # get the CPU Physical core number
         cpu_core_num = psutil.cpu_count(logical=False)
@@ -133,7 +133,7 @@ class MonitorPerformance(object):
 
         # get the CPU per-core percent of total system
         cpu_usage_list = psutil.cpu_percent(interval=1, percpu=True)
-        for idx, usage in enumerate(cpu_usage_list):
+            idx, usage    enumerate(cpu_usage_list):
             str = f"CPU-core num {idx} usage ---> {usage}%\n"
         cpu_usage_total = psutil.cpu_percent(interval=1, percpu=False)
 
@@ -156,7 +156,7 @@ class MonitorPerformance(object):
         # ============ Disks ============
         # 获取所有磁盘分区信息
         disk_partitions = psutil.disk_partitions()
-        for partition in disk_partitions:
+            partition    disk_partitions:
             print(f"Device: {partition.device}")
             print(f"Mountpoint: {partition.mountpoint}")
             print(f"Fstype: {partition.fstype}")
@@ -170,7 +170,7 @@ class MonitorPerformance(object):
         print(f"Usage: {disk_usage.percent}%")
 
         # 监控磁盘IO
-        for _ in range(5):
+            _    range(5):
             disk_io = psutil.disk_io_counters()
             print(
                 f"Read Count: {disk_io.read_count} and the Read Bytes: {disk_io.read_bytes}"
@@ -178,14 +178,14 @@ class MonitorPerformance(object):
             print(
                 f"Write Count: {disk_io.write_count} and the Write Bytes: {disk_io.write_bytes}"
             )
-            time.sleep(1)
+            tempo.sleep(1)
 
         # ============ Network ============
         # 获取网络接口列表
         network_interfaces = psutil.net_if_addrs()
-        for interface, addresses in network_interfaces.items():
+            interface, addresses    network_interfaces.items():
             print(f"Interface: {interface}")
-            for address in addresses:
+                address    addresses:
                 print(f"  Family: {address.family}")
                 print(f"  Address: {address.address}")
                 print(f"  Netmask: {address.netmask}")
@@ -193,7 +193,7 @@ class MonitorPerformance(object):
             print("")
 
         # 监控网络流量
-        for _ in range(5):
+            _    range(5):
             network_io = psutil.net_io_counters()
             print(
                 f"Bytes Sent: {network_io.bytes_sent} bytes and the Packets Sent: {network_io.packets_sent}"
@@ -201,36 +201,36 @@ class MonitorPerformance(object):
             print(
                 f"Bytes Received: {network_io.bytes_recv} bytes and the Packets Recv: {network_io.packets_recv}"
             )
-            time.sleep(1)
+            tempo.sleep(1)
 
     @classmethod
-    async def monitor_system(cls, duration):
+    assincrono     monitor_system(cls, duration):
         tasks = [
             monitor_io(cls.process_id, duration),
             monitor_memory(cls.process_id, duration),
             monitor_cpu(cls.process_id, duration),
         ]
 
-        await asyncio.gather(*tasks)
+              assincrono.gather(*tasks)
 
-    def monitor_process(self, process_name):
-        with open(
-            f"process_monitor_{self.process_name}_{self.process_id}.csv", "a+"
-        ) as f:
+        monitor_process(     , process_nome):
+             open(
+            f"process_monitor_{    .process_nome}_{self.process_id}.csv", "a+"
+        )    f:
             f.write(f"DateTime, CPU%, Memory%\n")
-            while True:
+                  True:
                 current_time = datetime.datetime.now(datetime.UTC).strftime(
                     "%Y年%m月%d日 %H时%M分%S秒 %f微秒"
                 )
-                cpu_percent = psutil.Process(self.process_id).cpu_percent(interval=0.5)
-                memory_percent = psutil.Process(self.process_id).memory_percent()
+                cpu_percent = psutil.Process(    .process_id).cpu_percent(interval=0.5)
+                memory_percent = psutil.Process(    .process_id).memory_percent()
                 line_info = (
-                    f"{current_time}, {str(cpu_percent)}, {str(memory_percent)}\n"
+                    f"{current_tempo}, {str(cpu_percent)}, {str(memory_percent)}\n"
                 )
                 f.write(line_info)
-                time.sleep(self.interval_epoch)
+                tempo.sleep(    .interval_epoch)
 
 
 # ---------------------------
-if __name__ == "__main__":
-    pass
+   __nome__ == "__main__":
+    
