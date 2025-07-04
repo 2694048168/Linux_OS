@@ -1,6 +1,6 @@
 <!-- markdownlint-disable -->
 <div align="center" markdown="1">
-   <sup>Special thanks to:</sup>
+   <sup>Special thanks to: Nuph, Xack and Liuw .</sup>
    <br>
    <br>
    <a href="https://www.warp.dev/oh-my-posh">
