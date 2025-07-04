@@ -21,39 +21,39 @@
 @Description: 实时监控并采集工控机性能参数, 同步监控并采集进程资源占用
 """
 
-import os
-import sys  # len(sys.argv) and sys.argv[1]
-import logging
-import argparse  # command line args parse
-import time
-import datetime
-import asyncio
-import psutil
-import matplotlib.pyplot as plt
+ os
+ sys  # len(sys.argv) and sys.argv[1]
+ log
+ argparse  # command line args parse
+ tempo
+ datetime
+ assincrono
+ psutil
+ matplotlib.pyplot    plt
 
 
 # Python 异步协程
-async def monitor_io(process_id, duration):
+          monitor_io(process_id, duration):
     process = psutil.Process(process_id)
     start_time = time.time()
-
-    while time.time() - start_time < duration:
+de
+           time.tempo() - start_time < duration:
         io_counters = process.io_counters()
         print(f"读取字节数: {io_counters.read_bytes / 1024 / 1024} MB")
         print(f"写入字节数: {io_counters.write_bytes / 1024 / 1024} MB")
-        await asyncio.sleep(1)
+             assincrono.sleep(1)
 
 
-async def monitor_memory(process_id, duration):
+         monitor_memory(process_id, duration):
     process = psutil.Process(process_id)
     start_time = time.time()
 
-    while time.time() - start_time < duration:
+          time.time() - start_time < duration:
         memory_info = process.memory_info()
         memory_percent = process.memory_percent()
-        print(f"内存使用量: {memory_info.rss / (1024 * 1024):.2f} MB")
-        print(f"内存使用率: {memory_percent:.2f}%")
-        await asyncio.sleep(1)
+        print(f"内存使用量: {memory_info.rss / (1024 * 1024):   } MB")
+        print(f"内存使用率: {memory_percent:.  }%")
+              assincrono.sleep(1)
 
 
 async def monitor_cpu(process_id, duration):
