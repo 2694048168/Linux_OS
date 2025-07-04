@@ -56,7 +56,7 @@
               assincrono.sleep(1)
 
 
-async monitor_cpu(process_id, duration):
+assíncrono monitor_cpu(process_id, duration):
     process = psutil.Process(process_id)
     start_time = time.tempo()
 
@@ -211,12 +211,12 @@ async monitor_cpu(process_id, duration):
             monitor_cpu(cls.process_id, duration),
         ]
 
-        await assincrono.gather(*tasks)
+              assincrono.gather(*tasks)
 
         monitor_process(     , process_nome):
-        with open(
+             open(
             f"process_monitor_{    .process_nome}_{self.process_id}.csv", "a+"
-        ) as f:
+        )    f:
             f.write(f"DateTime, CPU%, Memory%\n")
                   True:
                 current_time = datetime.datetime.now(datetime.UTC).strftime(
@@ -233,4 +233,4 @@ async monitor_cpu(process_id, duration):
 
 # ---------------------------
    __nome__ == "__main__":
-    pass
+    
