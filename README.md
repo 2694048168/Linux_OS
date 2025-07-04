@@ -1,111 +1,145 @@
-![Linux Logo](./logo.jpg)
+![Linux Logo](../LinuxOS.jpg)
 
-![Linux Logo](./LinuxOS.jpg)
+> Debian12-Gnome or Debian12-Xfce 使用过程中常用的配置和命令
 
-### Features
+### 首次安装的基本配置
+```shell
+# 设置终端打开快捷键
+# setting --> Keyboard --> Keyboard Shortcuts --> Custom Shortcuts --> add
+# 设置名称(Terminal), 命令(gnome-terminal), 快捷键(Ctrl + Alt + T)
 
+# 0. 设置终端的大小和位置
+# 打开一个新的终端窗口, 在 preference 设置字体大小和终端大小
+gsettings set org.gnome.mutter center-new-windows true
+# 按回车键 即可设置所有打开应用均默认在屏幕中间
+
+# 1. 设置 root 密码, 输入并确定即可(默认不回显)
+# Debian root password 在安装的时候就确定了
+# 切换到 root 用户, 测试密码
+su root
+
+# 2. 更换软件源到国内镜像后, 更新软件源列表信息本地索引
+# Debian 在安装的时候可以选择镜像站点
+# 修改软件源的方法和以前几乎相同,最便捷的方式依然是使用 sed 命令进行文本替换
+# 原先应该修改的 /etc/apt/sources.list 文件现在已被移除
+# Debian12 默认源的相关配置已被移至 /etc/apt/sources.list.d/debian.sources 文件
+sudo sed -i "s|http://deb.debian.org/debian|http://mirror.sjtu.edu.cn/debian|g" /etc/apt/sources.list.d/debian.sources
+
+sudo apt update
+
+# 3. 安装 ssh
+sudo apt install openssh-server
+# 配置SSH
+sudo vim /etc/ssh/sshd_config
+sudo gedit /etc/ssh/sshd_config
+# 找到下面内容, 禁止 root 用户远程登录
+# PermitRootLogin yes
+# PasswordAuthentication yes
+
+# 设置开机自启动
+sudo systemctl enable ssh
+sudo systemctl is-enabled ssh
+# 查看SSH服务状态
+sudo systemctl status ssh
+
+# 4. 查看IP, 远程ssh连接
+ip addr
+ssh weili@192.168.188.129
+# 输入 yes 授权, 然后输入该用户的密码即可登录
+ssh root@192.168.188.129
+
+# 根据需要设置防火墙
+sudo ufw allow ssh
 ```
-. Linux_OS
-|—— CppCodeSnippets
-|   |—— C++ 常用代码片段
-|—— CMakeCodeSnippets
-|   |—— CMake 常用代码片段
-|—— PythonCodeSnippets
-|   |—— Python 常用代码片段
-|—— vscode
-|   |—— VSCode 常用技巧以及配置
-|   |—— VS 项目属性配置说明
-|—— UbuntuConfig
-|   |—— README Ubuntu常用配置说明
-|—— DebianConfig
-|   |—— README Debian常用配置说明
-|—— VSLinux
-|   |—— Visual Studio 配置 Linux 开发环境
-|—— Logo.png
-|—— README.md
-```
 
---------------------------------------------------------------------------------
-### Powershell on Windows Terminal
+### 包管理工具
 
-```powershell
-# git bash
-# 将 'D:\Git\usr\bin' 添加到环境变量, 可以使用 Linux 一些常用命令
-
-# 在终端打开当前路径(文件资源管理器) on Windows
-start .
-
-# 在终端打开文件资源管理器 on Mac
-open .
-```
-
-### Linux Operating System
-
-- Configureation
-- LinuxFundation
-- SystemProgrammingCPlusPlus
-
-
-### Linux Command line Tricks
+- [**nala**](https://gitlab.com/volian/nala)
+- [**man package nala**](https://manpages.ubuntu.com/manpages/noble/en/man8/nala.8.html)
+- [**man package apt**](https://manpages.ubuntu.com/manpages/noble/en/man8/apt.8.html)
 
 ```shell
-# 快速回到上一次的目录
-cd -
+# apt 更换为 nala
+# 1. 安装 nala
+sudo apt update && sudo apt install nala
 
-# 快速回到 home/user 目录
-cd ~
+# 2. nala 选择最佳镜像源, 需要等待一会测试
+sudo nala fetch
+# 根据索引, 以空格方式输入想要的镜像源即可
 
-# 终端清屏
-clear
-# 使用快捷键 Ctrl + l
+# 3. 利用 nala 并行下载更新所有软件
+sudo nala update && sudo nala upgrade
 
-# 快速重启 shell
-reset
-
-# 关闭终端 shell
-# 使用快捷键 Ctrl + d
-
-# pushd 将一个特定的目录压入栈中保存 and popd 将栈中目录弹出, 回到特定目录
-pushd /etc/gcc
-# 经过一系列的目录路径改变后, 直接回到栈中目录
-popd
-
-# Ctrl + z 快速将一个任务放入后台, 临时需要终端处理其他任务后, fg 继续该任务
-# 特别是在配置一些文件变量的时候，需要利用终端查看一下路径啥的
-top
-Ctrl + z
-fg
-
-# 忘了给 command 添加 sudo 权限
-apt update
-# !! 表示上一条命令
-sudo !!
-
-# Ctrl + a 快速移动到行首，添加一些指令 sudo 之类的
-# Ctrl + e 快速移动到行尾，添加一些内容
-# Ctrl + u 快速删除整行命令
-# Ctrl + p 快速选择历史命令
-# 上下方向键可以快速查看历史命令
-
-# 查看历史命令 每条执行的指令有一个 number 编号
-history
-# !number_command
-!42
-
-sudo apt install cmatrix
-cmatrix
-# F11 开启/关闭 全屏
-
-# Ctrl + Shift + [+] 快速增大终端字体
-# Ctrl + [-] 快速减小终端字体
-reset # 恢复终端
-
-sudo apt update; sudo apt install build-essential
-# 两个指令中间是否相关依赖 
-sudo apt update && sudo apt install build-essential
-
-mount | column -t
-
+# 利用 dpkg 管理 deb 格式
+sudo dpkg -i xxx.deb  # 安装 deb 格式的软件
+sudo dpkg -r xxx      # 卸载 deb 格式安装的软件
 ```
 
-[Wei Li Blog](https://2694048168.github.io/blog/)
+### shell
+
+- [**zsh**](https://www.zsh.org/)
+- [**on my zsh**](https://ohmyz.sh/)
+- [**on my zsh Themes**](https://github.com/ohmyzsh/ohmyzsh/wiki/Themes)
+
+```shell
+# 将默认shell工具 bash 配置为 zsh
+# 1. 检查当前可用的 shell
+cat /etc/shells
+# bash 的配置文件 .bashrc
+
+# 2. 查看当前使用的shell
+echo $SHELL
+
+# 3. 安装 zsh shell
+sudo nala install zsh -y
+
+# 4. 查看 shell 版本 切换默认使用 zsh
+zsh --version
+sudo chsh -s $(which zsh)
+# root 用户默认使用 bash
+sudo chsh -s $(which bash) root
+sudo usermod -s /bin/zsh weili
+sudo usermod -s $(which zsh) weili
+
+# 注销当前用户重新登录, 验证当前默认 Shell
+# 再次打开终端, 会选择生成配置文件 .zshrc
+# 5. 安装 git 工具
+sudo nala install git
+git --version
+
+# 6. 安装 oh-my-zsh, 配置 zsh
+sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+# 7. 下载 zsh-syntax-highlighting 语法高亮插件
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh}/plugins/zsh-syntax-highlighting
+
+# 下载 zsh-autosuggestions 自动提示插件
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
+# 配置 .zshrc文件 更换默认主题 alanpeabody
+vim ~/.zshrc
+gedit ~/.zshrc
+# 添加内容
+plugins=(git zsh-syntax-highlighting zsh-autosuggestions)
+
+# 配置生效
+source ~/.zshrc
+```
+
+### VSCode 终端远程连接
+- [**Windows Terminal and on my posh**](https://ohmyposh.dev/)
+```shell
+# Windows 安装 Terminal + on my posh
+# 1. VSCode 安装插件, Extension ID
+# ms-vscode-remote.remote-ssh
+
+# 2. 选择插件加号, 即可添加ssh配置到文件
+ssh weili@192.168.188.129
+
+# 3. 选择插件的设置按钮, 即可查看远端ssh配置
+# 4. 刷新按钮点击, 即可刷新添加的ssh远端, 连接输入用户密码
+# 5. 第一次连接会在远端安装 VSCode server, 需要点时间
+# 6. 连接成功后, VSCode 左下角有明显标志
+# 7. 需要在远端开发, 注意VSCode 的本地插件和远端插件的区别
+```
