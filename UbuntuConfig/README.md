@@ -42,6 +42,28 @@ ssh root@192.168.188.129
 sudo ufw allow ssh
 ```
 
+### SSH 上传下载文件
+```shell
+# 在linux下一般用scp这个命令来通过ssh传输文件
+# 1、从服务器 下载文件
+scp username@servername:/path/filename /var/www/local_dir
+scp root@192.168.0.101:/var/www/test.txt  ./local_dir
+
+# 2、上传本地文件到服务器
+scp /path/filename username@servername:/path   
+scp /var/www/test.php  root@192.168.0.101:/var/www/
+
+# 3、从服务器下载整个目录
+scp -r username@servername:/var/www/remote_dir/ /var/www/local_dir
+scp -r root@192.168.0.101:/var/www/test  /var/www/  
+
+# 4、上传目录到服务器
+scp  -r local_dir username@servername:remote_dir
+scp -r test  root@192.168.0.101:/var/www/
+
+```
+
+
 ### 包管理工具
 
 - [**nala**](https://gitlab.com/volian/nala)
