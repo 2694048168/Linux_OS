@@ -63,6 +63,24 @@ scp -r test  root@192.168.0.101:/var/www/
 
 ```
 
+### Tmux
+```shell
+# install Tmux terminal 
+sudo apt install tmux
+
+# 进入 tmux
+tmux
+
+# tmux 默认的前置操作是 CTRL+b
+# %(Shift)	   # 左右切分 Pane
+# "(Shift)	   # 上下切分 Pane
+# space键	   # 切换 Pane 布局
+# 使用方向键：先按前缀Ctrl-b，然后按方向键（上下左右）即可切换到对应方向的pane
+# 使用快捷键重复上次的pane切换：Ctrl-b;（分号）可以切换到上次活动的pane
+# 使用快捷键快速切换：Ctrl-b o可以按顺序切换到下一个pane
+
+```
+
 
 ### 包管理工具
 
