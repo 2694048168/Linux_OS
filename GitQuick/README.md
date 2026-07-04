@@ -61,9 +61,10 @@ git config --global init.defaultBranch main
 > 一次提交就是项目在某个时刻的快照, **git add** 是选择要保存哪些变化; **git commit** 是真正保存一个存档
 
 - 分支 branch
-> 分支是一条独立的开发线,分支可以在不影响主线的情况下开发新功能
 >
 > [!IMPORTANT]
+>
+> 分支是一条独立的开发线,分支可以在不影响主线的情况下开发新功能
 >
 > main：稳定主分支。
 >
@@ -73,9 +74,10 @@ git config --global init.defaultBranch main
 >
 
 - 远程仓库 remote repository
-> 本地仓库在你电脑里, 远程仓库在服务器上, 如 **GitHub/Gitee/GitLab** 等公共的Git代码托管平台
 >
 > [!IMPORTANT]
+> 
+> 本地仓库在你电脑里, 远程仓库在服务器上, 如 **GitHub/Gitee/GitLab** 等公共的Git代码托管平台
 > 
 > **常见操作**：
 >
@@ -112,6 +114,9 @@ git status -c
 > 
 > 本地仓库 --->	Repository ---> 已经提交保存的历史
 
+>
+> [!IMPORTANT]
+>
 > Untracked	---> 新文件, Git 还没有追踪
 > 
 > Modified --->	文件被修改了, 但还没暂存
@@ -210,6 +215,7 @@ git diff --cached
 ```
 
 ### 撤销修改与 git reset
+
 >
 > [!IMPORTANT]
 > 
@@ -242,10 +248,10 @@ git restore --staged filename
 - 密钥文件，如 .env
 - 日志文件，如 *.log
 
-> 已经被 Git 追踪的文件怎么办
 >
 > [!IMPORTANT]
 > 
+> 已经被 Git 追踪的文件怎么办
 
 如果一个文件已经被提交过, 后来才加入 **.gitignore**, Git 仍然会继续追踪它 要停止追踪, 但保留本地文件或者目录
 ```shell
@@ -340,7 +346,11 @@ git push origin --delete feature/logger
 ```
 
 ## 合并冲突
+
+> [!WARNING]
+>
 > 当两个分支修改了同一个文件的同一部分，Git 不知道该保留谁，就会产生冲突
+>
 ```
 冲突文件长什么样#
 打开 message.txt，可能看到：
@@ -355,6 +365,7 @@ hello from feature a
 <<<<<<< HEAD 到 =======：当前分支内容。
 ======= 到 >>>>>>> feature/a：要合并进来的分支内容。
 ```
+>
 
 ## 回退、revert 与 rebase
 - git reset --> 是(改写历史记录) --> 本地提交还没分享给别人
@@ -379,7 +390,11 @@ git revert a1b2c3d
 
 git switch feature
 git rebase main
+```
 
+> [!WARNING]
+>
+```
 # main:    A---B---C
 # feature:         \---D'---E'
 # 注意 D 和 E 变成了 D' 和 E', 这说明提交 ID 变了
@@ -388,7 +403,11 @@ git rebase main
 # - 历史更直
 # - 查看 log 更清晰
 # - 功能分支合并前可以整理提交
+```
 
+> [!WARNING]
+>
+```
 # rebase 的风险
 # - 不要随便 rebase 已经推送并且多人使用的公共分支
 # - 因为 rebase 会改写提交历史，可能导致别人本地历史和远程历史不一致
