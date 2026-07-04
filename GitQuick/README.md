@@ -394,6 +394,7 @@ git rebase main
 
 > [!WARNING]
 >
+
 ```
 # main:    A---B---C
 # feature:         \---D'---E'
@@ -407,6 +408,7 @@ git rebase main
 
 > [!WARNING]
 >
+
 ```
 # rebase 的风险
 # - 不要随便 rebase 已经推送并且多人使用的公共分支
